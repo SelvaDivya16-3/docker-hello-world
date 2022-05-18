@@ -5,10 +5,10 @@ pipeline {
 	//}
 	
 	environment {
-		PROJECT_ID = 'possible-sun-342923'
+		PROJECT_ID = 'flowing-mantis-349805'
                 CLUSTER_NAME = 'cluster-1'
                 LOCATION = 'us-central1-c'
-                CREDENTIALS_ID = 'kubernetes'
+                CREDENTIALS_ID = 'kubernetesGKE'
 	}
 	
     stages {
@@ -30,9 +30,9 @@ pipeline {
 		    steps {
 			    echo 'whoami'
 			     script {
-				     myimage = docker.build("raghukom/devops:${env.BUILD_ID}")
+				     myimage = docker.build("divyathangavel/devops:${env.BUILD_ID}")
 				     
-				     //sh 'docker build -t raghukom/devops:latest .'
+				     //sh 'docker build -t divyathangavel/devops:latest .'
 			     }
 		    }
 	    }
@@ -40,17 +40,17 @@ pipeline {
 	    stage("Push Docker Image") {
 		    steps {
 				 //sh 'echo $DOCKERCREDS_PSW | docker login -u $DOCKERCREDS_USR --password-stdin'
-			         // sh "docker login -u raghukom -p Raghu@1507 registry-1.docker.io/v1"
+			         // sh "docker login -u divyathangavel -p NiKa@2328 registry-1.docker.io/v1"
 				 //sh 'docker push raghukom/devops:latest'
 			     script {
 				     echo "Push Docker Image"
-				     withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+				     withCredentials([usernamePassword(credentialsId: 'dockerhub-divya', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                        sh 'docker login -u $USERNAME -p $PASSWORD'
 
                                      }
 				     //withCredentials([string(credentialsId: 'dockerhub', variable: 'docker')]) {
 					     //echo "Entered"
-             				//sh 'docker login -u raghukom -p $docker'
+             				//sh 'docker login -u divyathangavel -p $docker'
 					    // echo "out"
 					//sh 'echo $dockerpwd | base64'
 				    // }
