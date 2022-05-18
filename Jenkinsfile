@@ -30,9 +30,9 @@ pipeline {
 		    steps {
 			    echo 'whoami'
 			     script {
-				     myimage = docker.build("divyathangavel/devops:${env.BUILD_ID}")
+				     myimage = docker.build("divyathangavel/pipeline:${env.BUILD_ID}")
 				     
-				     //sh 'docker build -t divyathangavel/devops:latest .'
+				     //sh 'docker build -t divyathangavel/pipeline:latest .'
 			     }
 		    }
 	    }
